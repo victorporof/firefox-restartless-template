@@ -5,7 +5,7 @@
 
   <Description about="urn:mozilla:install-manifest">
 
-    <!-- The id of the extension -->
+    <!-- The id of the extension. -->
     <em:id>my-addon@mozilla.com</em:id>
 
     <!-- A version string identifying the version of the add-on. -->
