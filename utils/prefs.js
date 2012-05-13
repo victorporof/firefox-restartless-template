@@ -63,8 +63,52 @@ const Prefs = {
   }
 };
 
+const Localization = {
+
+  /**
+   * Initializes the localization bundle.
+   * @param object aAddon
+   * @param string aLocale
+   * @return self
+   */
+  init: function L_init(aAddon, aLocale) {
+    let propertyPath = "locales/" + aLocale + ".properties";
+    let propertyFile = global.addon.getResourceURI(propertyPath);
+
+    this._localeName = aLocale;
+    this._bundlePath = propertyFile;
+    return this;
+  },
+
+  /**
+   * Returns a (optionally formatted) string in the string bundle.
+   *
+   * @param string aName
+   *        The string name in the bundle.
+   * @param array aArgs
+   *        Arguments for the formatted string.
+   *
+   * @return string The equivalent string from the bundle.
+   */
+  getString: function L_getString(aName, aArgs)
+  {
+    if (!aName) {
+      return null;
+    }
+    if (!aArgs) {
+      return this._bundle.GetStringFromName(aName);
+    }
+    return this._bundle.formatStringFromName(aName, aArgs, aArgs.length);
+  }
+};
+
 XPCOMUtils.defineLazyGetter(Prefs, "_branch", function() {
   return Services.prefs.getBranch(Prefs._branchName);
+});
+
+// set the necessary string bundle
+XPCOMUtils.defineLazyGetter(Localization, "_bundle", function() {
+  return Services.strings.createBundle(Localization._bundlePath.spec);
 });
 
 // Shortcut for accessing a pref.
@@ -72,3 +116,6 @@ const pref = Prefs.getPref.bind(Prefs);
 
 // Shortcut for saving a pref.
 const save = Prefs.setPref.bind(Prefs);
+
+// Shortcut for accessing a localized string.
+const l10n = Localization.getString.bind(Localization);

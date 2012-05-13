@@ -3,6 +3,11 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 "use strict";
 
+const { classes: Cc, interfaces: Ci, manager: Cm, utils: Cu } = Components;
+Cu.import("resource://gre/modules/AddonManager.jsm");
+Cu.import("resource://gre/modules/Services.jsm");
+Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+
 const global = this;
 const includes = [
   "utils/prefs.js",
@@ -15,10 +20,7 @@ const PREF_MAP = {
   example: "my-pref"
 };
 
-const { classes: Cc, interfaces: Ci, manager: Cm, utils: Cu } = Components;
-Cu.import("resource://gre/modules/AddonManager.jsm");
-Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+const L10N_BUNDLE = "en-US";
 
 /**
  * Handle the add-on being activated on install/enable.
@@ -32,8 +34,9 @@ function startup({id}) AddonManager.getAddonByID(id, function(addon) {
     Services.scriptloader.loadSubScript(fileURI.spec, global);
   });
 
-  // Always set the default prefs as they disappear on restart.
+  // Always set the default prefs and l10n as they disappear on restart.
   Prefs.init(PREF_BRANCH, PREF_MAP).setDefaults();
+  Localization.init(addon, L10N_BUNDLE);
 
   // Adds listeners for specific chrome window events.
   WindowManager.addListeners({ load: [loadIntoWindow], unload: [unloadFromWindow] });
