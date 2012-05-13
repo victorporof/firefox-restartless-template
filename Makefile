@@ -5,7 +5,7 @@ VERSION=`git describe --tags`
 NAME="${PROJECT}-${VERSION}.xpi"
 XPI="${PWD}/${BUILD}/${NAME}"
 
-.PHONY: xpi latest
+.PHONY: xpi latest clean
 
 xpi:
 	@echo "Building '${XPI}'..."
