@@ -11,7 +11,7 @@ const Prefs = {
    * @return self
    */
   init: function P_init(aBranch, aMap) {
-    this._branch = Services.prefs.getBranch(aBranch);
+    this._branchName = aBranch;
     this._map = aMap;
     return this;
   },
@@ -39,10 +39,8 @@ const Prefs = {
    * @param boolean | number | string aValue
    */
   setPref: function P_setPref(aKey, aValue) {
-    this._map[aKey] = aValue;
-
     // Figure out what type of pref to store.
-    switch (typeof this._map[aKey]) {
+    switch (typeof (this._map[aKey] = aValue)) {
       case "boolean":
         this._branch.setBoolPref(aKey, aValue);
         break;
@@ -64,6 +62,10 @@ const Prefs = {
     }
   }
 };
+
+XPCOMUtils.defineLazyGetter(Prefs, "_branch", function() {
+  return Services.prefs.getBranch(Prefs._branchName);
+});
 
 // Shortcut for accessing a pref.
 const pref = Prefs.getPref.bind(Prefs);

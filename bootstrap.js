@@ -12,12 +12,13 @@ const includes = [
 
 const PREF_BRANCH = "extensions.my-addon.";
 const PREF_MAP = {
-  example: "pref"
+  example: "my-pref"
 };
 
 const { classes: Cc, interfaces: Ci, manager: Cm, utils: Cu } = Components;
 Cu.import("resource://gre/modules/AddonManager.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
+Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 /**
  * Handle the add-on being activated on install/enable.
