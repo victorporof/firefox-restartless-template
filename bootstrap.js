@@ -14,7 +14,7 @@ const PREF_BRANCH = "extensions.my-addon.";
 const PREF_MAP = {
 };
 
-const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
+const { classes: Cc, interfaces: Ci, manager: Cm, utils: Cu } = Components;
 Cu.import("resource://gre/modules/AddonManager.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 
@@ -22,6 +22,8 @@ Cu.import("resource://gre/modules/Services.jsm");
  * Handle the add-on being activated on install/enable.
  */
 function startup({id}) AddonManager.getAddonByID(id, function(addon) {
+  global.addon = addon;
+
   // Load various javascript includes for helper functions.
   includes.forEach(function(fileName) {
     let fileURI = addon.getResourceURI(fileName);
@@ -31,8 +33,8 @@ function startup({id}) AddonManager.getAddonByID(id, function(addon) {
   // Always set the default prefs as they disappear on restart.
   Prefs.init(PREF_BRANCH, PREF_MAP).setDefaults();
 
-  WindowManager.addListener("load", loadIntoWindow);
-  WindowManager.addListener("unload", unloadFromWindow);
+  // Adds listeners for specific chrome window events.
+  WindowManager.addListeners({ load: [loadIntoWindow], unload: [unloadFromWindow] });
   WindowManager.onStartup();
 });
 

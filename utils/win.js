@@ -15,6 +15,20 @@ const WindowManager = {
   },
 
   /**
+   * Adds multiple listeners for specific chrome window events.
+   *
+   * @param aListeners
+   *        An object containing the event listeners and associated callbacks.
+   */
+  addListeners: function WM_addListeners(aListeners) {
+    for (let event in aListeners) {
+      for each (let func in aListeners[event]) {
+        this._listeners.push({ event: event, func: func });
+      }
+    }
+  },
+
+  /**
    * Adds a listener for a specific chrome window event.
    *
    * @param string aEvent
@@ -82,19 +96,33 @@ const WindowManager = {
   },
 
   /**
+   * Watch the load event for a particular dom window, and issue all registered
+   * load callbacks when ready.
+   *
+   * @param nsIDOMWindow aWindow
+   *        The window to be watched.
+   * @param function aCallback
+   *        Function called when the window was already loaded.
+   */
+  watch: function WM_watch(aWindow, aCallback) {
+    if (aWindow.document.readyState == "complete" && typeof aCallback == "function") {
+      return aCallback(aWindow.content);
+    }
+    aWindow.addEventListener("load", function onLoad() {
+      aWindow.removeEventListener("load", onLoad, false);
+      this.getListeners(this.EVENTS.LOAD).forEach(function(e) e.func(aWindow));
+    }.bind(this), false);
+  },
+
+  /**
    * A listener handling any new chrome window events.
-   * @private
    */
   _chromeWindowListener: {
     onOpenWindow: function(aWindow) {
       // Wait for the window to finish loading.
-      let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
-        .getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
-
-      domWindow.addEventListener("load", function onLoad() {
-        domWindow.removeEventListener("load", onLoad, false);
-        this.getListeners(this.EVENTS.LOAD).forEach(function(e) e.func(domWindow));
-      }.bind(WindowManager), false);
+      WindowManager.watch(aWindow
+        .QueryInterface(Ci.nsIInterfaceRequestor)
+        .getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow));
     },
     onCloseWindow: function(aWindow) { },
     onWindowTitleChange: function(aWindow, aTitle) { }

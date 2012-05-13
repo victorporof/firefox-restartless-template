@@ -3,7 +3,9 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 function loadIntoWindow(window) {
-  log("loaded into window.");
+  WindowManager.watch(window, function ready(content) {
+    log("loaded into window: " + window.location);
+  });
 }
 
 function unloadFromWindow(window) {
