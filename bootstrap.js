@@ -17,7 +17,7 @@ const includes = [
 
 const PREF_BRANCH = "extensions.my-addon.";
 const PREF_MAP = {
-  example: "my-pref"
+  name: "World"
 };
 
 const L10N_BUNDLE = "en-US";

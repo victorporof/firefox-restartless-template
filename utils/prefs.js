@@ -108,7 +108,9 @@ XPCOMUtils.defineLazyGetter(Prefs, "_branch", function() {
 
 // set the necessary string bundle
 XPCOMUtils.defineLazyGetter(Localization, "_bundle", function() {
-  return Services.strings.createBundle(Localization._bundlePath.spec);
+  // Avoid caching issues by always getting a new file.
+  let uniqueFileSpec = Localization._bundlePath.spec + "#" + Math.random();
+  return Services.strings.createBundle(uniqueFileSpec);
 });
 
 // Shortcut for accessing a pref.

@@ -6,7 +6,7 @@ function loadIntoWindow(window) {
   WindowManager.watch(window, function ready(content) {
     log("loaded into window: " + window.location);
   });
-  log(l10n("greeting"));
+  log(l10n("greeting", [pref("name")]));
 }
 
 function unloadFromWindow(window) {
