@@ -85,8 +85,8 @@ const Localization = {
    *
    * @param string aName
    *        The string name in the bundle.
-   * @param array aArgs
-   *        Arguments for the formatted string.
+   * @param string | array aArgs
+   *        One or multiple arguments for the formatted string.
    *
    * @return string The equivalent string from the bundle.
    */
@@ -98,6 +98,7 @@ const Localization = {
     if (!aArgs) {
       return this._bundle.GetStringFromName(aName);
     }
+    if (!(aArgs instanceof Array)) { aArgs = [aArgs]; }
     return this._bundle.formatStringFromName(aName, aArgs, aArgs.length);
   }
 };
@@ -106,7 +107,6 @@ XPCOMUtils.defineLazyGetter(Prefs, "_branch", function() {
   return Services.prefs.getBranch(Prefs._branchName);
 });
 
-// set the necessary string bundle
 XPCOMUtils.defineLazyGetter(Localization, "_bundle", function() {
   // Avoid caching issues by always getting a new file.
   let uniqueFileSpec = Localization._bundlePath.spec + "#" + Math.random();
