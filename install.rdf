@@ -11,8 +11,17 @@
     <!-- A version string identifying the version of the add-on. -->
     <em:version>0.1</em:version>
 
-    <!-- An integer value representing the type of add-on. -->
-    <em:type>2</em:type> <!-- Extensions -->
+    <!-- The name of the add-on; intended for display in the UI. -->
+    <em:name>My Addon</em:name>
+
+    <!-- A short description to display in the user interface. -->
+    <em:description>Description about My Addon</em:description>
+
+    <!-- The name of the developer to display in the user interface. -->
+    <em:creator>My Name</em:creator>
+
+    <!-- A link to the add-on home page to display in the user interface. -->
+    <em:homepageURL>http://mozilla.org</em:homepageURL>
 
     <!-- Target Application this extension can install into,
          with minimum and maximum supported versions. -->
@@ -25,17 +34,8 @@
       </Description>
     </em:targetApplication>
 
-    <!-- The name of the add-on; intended for display in the UI. -->
-    <em:name>My Addon</em:name>
-
-    <!-- A short description to display in the user interface. -->
-    <em:description>Description about My Addon</em:description>
-
-    <!-- The name of the developer to display in the user interface. -->
-    <em:creator>My Name</em:creator>
-
-    <!-- A link to the add-on home page to display in the user interface. -->
-    <em:homepageURL>http://mozilla.org</em:homepageURL>
+    <!-- An integer value representing the type of add-on. -->
+    <em:type>2</em:type> <!-- Extensions -->
 
     <!-- Tells the application whether the extension is boot-strappable. -->
     <em:bootstrap>true</em:bootstrap>
