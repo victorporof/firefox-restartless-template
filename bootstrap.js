@@ -12,6 +12,7 @@ const includes = [
 
 const PREF_BRANCH = "extensions.my-addon.";
 const PREF_MAP = {
+  example: "pref"
 };
 
 const { classes: Cc, interfaces: Ci, manager: Cm, utils: Cu } = Components;
