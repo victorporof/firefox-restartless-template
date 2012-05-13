@@ -1,8 +1,8 @@
 PROJECT="my-addon"
 PWD=`pwd`
+BUILD="build"
 VERSION=`git describe --tags`
 NAME="${PROJECT}-${VERSION}.xpi"
-BUILD="build"
 XPI="${PWD}/${BUILD}/${NAME}"
 
 .PHONY: xpi latest
@@ -13,4 +13,10 @@ xpi:
 	@git archive --format=zip -o ${XPI} HEAD
 
 latest:
+	@echo "Building latest '${XPI}'..."
+	@mkdir -p ${BUILD}
 	@zip -r ${XPI} * -x "${BUILD}/*" -x "Makefile" -x ".git/*"
+
+clean:
+	@echo "Removing '${PWD}/${BUILD}'..."
+	@rm -rf ${BUILD}
