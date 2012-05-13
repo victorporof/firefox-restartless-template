@@ -60,17 +60,7 @@ const Prefs = {
    */
   setDefaults: function P_setDefaults() {
     for (let [key, val] in Iterator(this._map)) {
-      switch (typeof val) {
-        case "boolean":
-          this._branch.setBoolPref(key, val);
-          break;
-        case "number":
-          this._branch.setIntPref(key, val);
-          break;
-        case "string":
-          this._branch.setCharPref(key, val);
-          break;
-      }
+      this.setPref(key, val);
     }
   }
 };
