@@ -34,6 +34,28 @@ const Prefs = {
   },
 
   /**
+   * Set a new or overwrites an existing preference value.
+   * @param string aKey
+   * @param boolean | number | string aValue
+   */
+  setPref: function P_setPref(aKey, aValue) {
+    this._map[aKey] = aValue;
+
+    // Figure out what type of pref to store.
+    switch (typeof this._map[aKey]) {
+      case "boolean":
+        this._branch.setBoolPref(aKey, aValue);
+        break;
+      case "number":
+        this._branch.setIntPref(aKey, aValue);
+        break;
+      case "string":
+        this._branch.setCharPref(aKey, aValue);
+        break;
+    }
+  },
+
+  /**
    * Initialize default preferences specified in the map.
    */
   setDefaults: function P_setDefaults() {
@@ -55,3 +77,6 @@ const Prefs = {
 
 // Shortcut for accessing a pref.
 const pref = Prefs.getPref.bind(Prefs);
+
+// Shortcut for saving a pref.
+const save = Prefs.setPref.bind(Prefs);
