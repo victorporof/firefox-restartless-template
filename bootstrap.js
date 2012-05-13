@@ -34,8 +34,8 @@ function startup({id}) AddonManager.getAddonByID(id, function(addon) {
     Services.scriptloader.loadSubScript(fileURI.spec, global);
   });
 
-  // Always set the default prefs and l10n as they disappear on restart.
-  Prefs.init(PREF_BRANCH, PREF_MAP).setDefaults();
+  // Load prefs and localization managers.
+  Prefs.init(PREF_BRANCH, PREF_MAP);
   Localization.init(addon, L10N_BUNDLE);
 
   // Adds listeners for specific chrome window events.
@@ -54,6 +54,7 @@ function shutdown(data, reason) {
  * Handle the add-on being installed.
  */
 function install(data, reason) {
+  Prefs.init(PREF_BRANCH, PREF_MAP).setDefaults();
 }
 
 /**
