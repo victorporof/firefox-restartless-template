@@ -23,7 +23,7 @@ const WindowManager = {
   addListeners: function WM_addListeners(aListeners) {
     for (let event in aListeners) {
       for each (let func in aListeners[event]) {
-        this._listeners.push({ event: event, func: func });
+        this.addListener(event, func);
       }
     }
   },
