@@ -57,6 +57,9 @@ const Prefs = {
    * Initialize default preferences specified in the map.
    */
   setDefaults: function P_setDefaults() {
+    // First remove all of the preferences referenced by this branch.
+    this._branch.deleteBranch("");
+
     for (let [key, val] in Iterator(this._map)) {
       this.setPref(key, val);
     }

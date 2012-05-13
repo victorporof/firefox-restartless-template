@@ -25,14 +25,8 @@ const L10N_BUNDLE = "en-US";
 /**
  * Handle the add-on being activated on install/enable.
  */
-function startup({id}) AddonManager.getAddonByID(id, function(addon) {
-  global.addon = addon;
-
-  // Load various javascript includes for helper functions.
-  includes.forEach(function(fileName) {
-    let fileURI = addon.getResourceURI(fileName);
-    Services.scriptloader.loadSubScript(fileURI.spec, global);
-  });
+function startup({id}, reason) AddonManager.getAddonByID(id, function(addon) {
+  load(global.addon = addon);
 
   // Load prefs and localization managers.
   Prefs.init(PREF_BRANCH, PREF_MAP);
@@ -46,19 +40,31 @@ function startup({id}) AddonManager.getAddonByID(id, function(addon) {
 /**
  * Handle the add-on being deactivated on uninstall/disable.
  */
-function shutdown(data, reason) {
+function shutdown({id}, reason) AddonManager.getAddonByID(id, function(addon) {
   WindowManager.onShutdown(reason);
-}
+});
 
 /**
  * Handle the add-on being installed.
  */
-function install(data, reason) {
+function install({id}, reason) AddonManager.getAddonByID(id, function(addon) {
+  load(global.addon = addon);
   Prefs.init(PREF_BRANCH, PREF_MAP).setDefaults();
-}
+});
 
 /**
  * Handle the add-on being uninstalled.
  */
 function uninstall(data, reason) {
+}
+
+/**
+ * Load various javascript includes for helper functions.
+ */
+function load(addon) {
+  includes.forEach(function(fileName) {
+    let fileURI = addon.getResourceURI(fileName);
+    Services.scriptloader.loadSubScript(fileURI.spec, global);
+  });
+  includes.length = 0;
 }
