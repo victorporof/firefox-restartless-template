@@ -3,7 +3,6 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const Prefs = {
-
   /**
    * Initializes the preferences branch and map.
    * @param string aBranch
@@ -67,7 +66,6 @@ const Prefs = {
 };
 
 const Localization = {
-
   /**
    * Initializes the localization bundle.
    * @param object aAddon
