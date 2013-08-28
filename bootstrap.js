@@ -3,68 +3,48 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 "use strict";
 
-const { classes: Cc, interfaces: Ci, manager: Cm, utils: Cu } = Components;
-Cu.import("resource://gre/modules/AddonManager.jsm");
+const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
+
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+Cu.import("resource:///modules/devtools/gDevTools.jsm");
 
-const global = this;
-const includes = [
-  "utils/prefs.js",
-  "utils/win.js",
-  "main.js"
-];
+XPCOMUtils.defineLazyGetter(this, "osString", () =>
+  Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULRuntime).OS);
 
-const PREF_BRANCH = "extensions.my-addon.";
-const PREF_MAP = {
-  name: "World"
-};
+XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
+  Services.strings.createBundle("chrome://my-addon/locale/strings.properties"));
 
-const L10N_BUNDLE = "en-US";
+XPCOMUtils.defineLazyGetter(this, "toolDefinition", () => ({
+  id: "my-addon",
+  ordinal: 99,
+  key: toolStrings.GetStringFromName("MyAddon.commandkey"),
+  modifiers: osString == "Darwin" ? "accel,alt" : "accel,shift",
+  icon: "chrome://my-addon/skin/icon.png",
+  url: "chrome://my-addon/content/tool.xul",
+  label: toolStrings.GetStringFromName("MyAddon.label"),
+  tooltip: toolStrings.GetStringFromName("MyAddon.tooltip"),
+  isTargetSupported: function(target) {
+    return target.isLocalTab;
+  },
+  build: function(iframeWindow, toolbox) {
+    Cu.import("chrome://my-addon/content/panel.js");
+    let panel = new MyAddonPanel(iframeWindow, toolbox);
+    return panel.open();
+  }
+}));
 
-/**
- * Handle the add-on being activated on install/enable.
- */
-function startup({id}, reason) AddonManager.getAddonByID(id, function(addon) {
-  load(global.addon = addon);
-
-  // Load prefs and localization managers.
-  Prefs.init(PREF_BRANCH, PREF_MAP);
-  Localization.init(addon, L10N_BUNDLE);
-
-  // Adds listeners for specific chrome window events.
-  WindowManager.addListeners({ load: [loadIntoWindow], unload: [unloadFromWindow] });
-  WindowManager.onStartup();
-});
-
-/**
- * Handle the add-on being deactivated on uninstall/disable.
- */
-function shutdown({id}, reason) AddonManager.getAddonByID(id, function(addon) {
-  WindowManager.onShutdown(reason);
-});
-
-/**
- * Handle the add-on being installed.
- */
-function install({id}, reason) AddonManager.getAddonByID(id, function(addon) {
-  load(global.addon = addon);
-  Prefs.init(PREF_BRANCH, PREF_MAP).setDefaults();
-});
-
-/**
- * Handle the add-on being uninstalled.
- */
-function uninstall(data, reason) {
+function startup() {
+  gDevTools.registerTool(toolDefinition);
 }
 
-/**
- * Load various javascript includes for helper functions.
- */
-function load(addon) {
-  includes.forEach(function(fileName) {
-    let fileURI = addon.getResourceURI(fileName);
-    Services.scriptloader.loadSubScript(fileURI.spec, global);
-  });
-  includes.length = 0;
+function shutdown() {
+  gDevTools.unregisterTool(toolDefinition);
+  Services.obs.notifyObservers(null, "startupcache-invalidate", null);
+}
+
+function install() {
+}
+
+function uninstall() {
 }

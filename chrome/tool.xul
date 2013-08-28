@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://browser/skin/devtools/common.css" type="text/css"?>
+<?xml-stylesheet href="chrome://my-addon/skin/style.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % MyAddonDTD SYSTEM "chrome://my-addon/locale/strings.dtd">
+ %MyAddonDTD;
+]>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/javascript" src="tool.js"/>
+  <hbox id="body" align="center" pack="center" flex="1">
+    <label id="hello-world" value="&myAddonUI.label;"/>
+  </hbox>
+</window>
