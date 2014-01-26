@@ -4,7 +4,7 @@ files='find . -type f -not -path "*.git*" -not -path "*skin*" -not -path "*$0*"'
 
 function replace {
   if [[ $1 == $2 ]]; then
-    echo "The add-on already uses this id."
+    echo "The add-on already uses this $3."
     exit 1
   fi
   read -p "This add-on's $3 will be changed from '$1' to '$2'. Continue? (y/n)? "
