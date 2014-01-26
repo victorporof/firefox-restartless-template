@@ -15,7 +15,14 @@ tl;dr: A "Firefox extension proxy file" is a simple way of telling Firefox where
 
 __Step 0__. Clone this repository.
 
-__Step 1__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
+__Step 1__. It's a good idea to customize your add-on's id and name *now*, before things get too complex. By default, this template has a vanilla `my-addon` id and `MyAddon` name. You should modify this.
+
+* `./customize.sh -i awesome-addon-id` to set the id; this will be useful when creating an extension proxy file.
+* `./customize.sh -n AwesomeTool` to set the name; this will be displayed in the Toolbox and various Firefox menus.
+
+Initially, please try to only use alphanumeric characters for the add-on's id and name.
+
+__Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
 * OS X: `~/Library/Application Support/Firefox/Profiles/<profile folder>`
 * Linux: `~/.mozilla/firefox/<profile folder>`
@@ -23,15 +30,15 @@ __Step 1__. Locate your Firefox profile directory. Read [this](http://kb.mozilla
 
 You might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes in the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
 
-__Step 2__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
+__Step 3__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
 For example, with this vanilla template, the extension proxy file name would be `my-addon@mozilla.com`.
 
-__Step 3__. Set the (plain text) contents of this file to be the path to the directory that contains [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf) (where you cloned this repository).
+__Step 4__. Set the (plain text) contents of this file to be the path to the directory that contains [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf) (where you cloned this repository).
 
 For example, the extension proxy file's contents could be `~/home/myself/work/Restartless-Template`.
 
-__Step 4__. Restart Firefox. A dialog asking you whether "you would like to modify Firefox with the add-on" might show up; please allow the installation and continue.
+__Step 5__. Restart Firefox. A dialog asking you whether "you would like to modify Firefox with the add-on" might show up; please allow the installation and continue.
 
 Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
 
