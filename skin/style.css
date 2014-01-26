@@ -2,6 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/* Go to https://developer.mozilla.org/docs/Tools/DevToolsColors
+ * for the default colors used in Firefox Developer Tools */
+
 #body {
   background: url(background-noise-toolbar.png), #343c45; /* Dark toolbars */
 }
