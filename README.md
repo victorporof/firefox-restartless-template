@@ -13,13 +13,15 @@ tl;dr: A "Firefox extension proxy file" is a simple way of telling Firefox where
 
 ### How to iterate fast
 
-__Step 0__. Clone this repository somewhere.
+__Step 0__. Clone this repository.
 
 __Step 1__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
 * OS X: `~/Library/Application Support/Firefox/Profiles/<profile folder>`
 * Linux: `~/.mozilla/firefox/<profile folder>`
 * Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile folder>`
+
+You might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes in the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
 
 __Step 2__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
@@ -31,6 +33,8 @@ For example, the extension proxy file's contents could be `~/home/myself/work/Re
 
 __Step 4__. Restart Firefox. A dialog asking you whether "you would like to modify Firefox with the add-on" might show up; please allow the installation and continue.
 
+Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
+
 That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox.
 
 ## Releasing
@@ -40,6 +44,10 @@ Simply `make` inside the project folder to build and archive the latest version 
 To wipe the build directory, use `make clean`.
 
 If you use git tags to nicely version your project, you can use `make xpi` to build a "release" version of your add-on based on the latest tag. This will not take uncommitted changes into consideration.
+
+## Publish your add-on
+
+Go to https://addons.mozilla.org/en-US/developers/ and publish your new awesome add-on. 
 
 ## Read more
 
