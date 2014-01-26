@@ -5,14 +5,6 @@ Simple template project for developing restartless Firefox Developer Tools addon
 
 ![Screenshot](https://dl.dropboxusercontent.com/u/2388316/screenshots/firefox-restartless-addon.png)
 
-## Building
-
-Simply `make` inside the project folder to build and archive the latest version of the add-on. A build directory will be created, containing an .xpi file representing your add-on. Subsequent calls to `make` will update the add-on file with the latest changes.
-
-To wipe the build directory, use `make clean`.
-
-If you use git tags to nicely version your project, you can use `make xpi` to build a "release" version of your add-on based on the latest tag. This will not take uncommitted changes into consideration.
-
 ## Workflow
 
 This template allows you to create restartless Firefox add-ons. This means that your workflow can also benefit from it, and reduce the (likely annoying) code->build->install lag. See documentation about [setting up a bootstrapped addon extension environment](https://developer.mozilla.org/en-US/docs/Setting_up_extension_development_environment#Firefox_extension_proxy_file) for some in-depth explanation on how to do this.
@@ -29,7 +21,7 @@ __Step 1__. Locate your Firefox profile directory. Read [this](http://kb.mozilla
 * Linux: `~/.mozilla/firefox/<profile folder>`
 * Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile folder>`
 
-__Step 2__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf) file.
+__Step 2__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
 For example, with this vanilla template, the extension proxy file name would be `my-addon@mozilla.com`.
 
@@ -40,6 +32,14 @@ For example, the extension proxy file's contents could be `~/home/myself/work/Re
 __Step 4__. Restart Firefox.
 
 That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from [about:addons](about:addons) in Firefox.
+
+## Releasing
+
+Simply `make` inside the project folder to build and archive the latest version of the add-on. A build directory will be created, containing an .xpi file representing your add-on. Subsequent calls to `make` will update the add-on file with the latest changes.
+
+To wipe the build directory, use `make clean`.
+
+If you use git tags to nicely version your project, you can use `make xpi` to build a "release" version of your add-on based on the latest tag. This will not take uncommitted changes into consideration.
 
 ## Read more
 
