@@ -13,57 +13,42 @@ XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
   "resource:///modules/devtools/shared/event-emitter.js");
 XPCOMUtils.defineLazyModuleGetter(this, "promise",
   "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
+XPCOMUtils.defineLazyModuleGetter(this, "Task",
+  "resource://gre/modules/Task.jsm");
 
 this.MyAddonPanel = function MyAddonPanel(iframeWindow, toolbox) {
   this.panelWin = iframeWindow;
   this._toolbox = toolbox;
-  this._destroyer = null;
 
   EventEmitter.decorate(this);
 };
 
 MyAddonPanel.prototype = {
   open: function() {
-    let panelWin = this.panelWin;
-    let panelLoaded = promise.defer();
-
-    // Make sure the iframe content window is ready.
-    panelWin.addEventListener("load", function onLoad() {
-      panelWin.removeEventListener("load", onLoad, true);
-      panelLoaded.resolve();
-    }, true);
-
-    return panelLoaded.promise
-      .then(() => this.panelWin.startup(this._toolbox))
-      .then(() => {
-        this.isReady = true;
-        this.emit("ready");
-        return this;
-      })
-      .then(null, function onError(aReason) {
-        Cu.reportError("MyAddonPanel open failed. " +
-                       aReason.error + ": " + aReason.message);
-      });
+    return Task.spawn(function*() {
+      yield once(this.panelWin, "load");
+      yield this.panelWin.startup(this._toolbox);
+      this.isReady = true;
+      this.emit("ready");
+    }.bind(this));
   },
-
-  // DevToolPanel API
 
   get target() this._toolbox.target,
 
   destroy: function() {
-    // Make sure this panel is not already destroyed.
-    if (this._destroyer) {
-      return this._destroyer;
-    }
-
-    return this._destroyer = this.panelWin.shutdown()
-      .then(() => {
-        this.isReady = false;
-        this.emit("destroyed");
-      })
-      .then(null, function onError(aReason) {
-        Cu.reportError("MyAddonPanel destroy failed. " +
-                       aReason.error + ": " + aReason.message);
-      });
+    return Task.spanw(function*() {
+      yield this.panelWin.shutdown();
+      this.isReady = false;
+      this.emit("destroyed");
+    }.bind(this));
   }
 };
+
+function once(node, event) {
+  let deferred = promise.defer();
+  node.addEventListener(event, function onEvent() {
+    node.removeEventListener(event, onEvent);
+    deferred.resolve();
+  }, true);
+  return deferred.promise;
+}
