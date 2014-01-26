@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #body {
-  background: hsl(208,11%,27%);
+  background: url(background-noise-toolbar.png), #343c45; /* Dark toolbars */
 }
 
 #hello-world {
