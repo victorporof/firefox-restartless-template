@@ -11,6 +11,6 @@
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/javascript" src="tool.js"/>
   <hbox id="body" align="center" pack="center" flex="1">
-    <label id="hello-world" value="&myAddonUI.label;"/>
+    <label id="hello-world" value="&MyAddonUI.label;"/>
   </hbox>
 </window>
