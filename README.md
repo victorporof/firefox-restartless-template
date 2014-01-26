@@ -28,7 +28,7 @@ __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozilla
 * Linux: `~/.mozilla/firefox/<profile folder>`
 * Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile folder>`
 
-You might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes in the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
+You might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes during the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
 
 __Step 3__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
