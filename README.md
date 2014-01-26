@@ -21,17 +21,17 @@ __Step 1__. Locate your Firefox profile directory. Read [this](http://kb.mozilla
 * Linux: `~/.mozilla/firefox/<profile folder>`
 * Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile folder>`
 
-__Step 2__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
+__Step 2__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
 For example, with this vanilla template, the extension proxy file name would be `my-addon@mozilla.com`.
 
-__Step 3__. Set the (plain text) contents of this file to be the path to the directory that contains  [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf) (where you cloned this repository).
+__Step 3__. Set the (plain text) contents of this file to be the path to the directory that contains [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf) (where you cloned this repository).
 
-For example, the extension proxy file's contents could be `~/home/myself/work/Restartless-Template/install.rdf`.
+For example, the extension proxy file's contents could be `~/home/myself/work/Restartless-Template`.
 
-__Step 4__. Restart Firefox.
+__Step 4__. Restart Firefox. A dialog asking you whether "you would like to modify Firefox with the add-on" might show up; please allow the installation and continue.
 
-That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from [about:addons](about:addons) in Firefox.
+That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox.
 
 ## Releasing
 
