@@ -12,10 +12,10 @@
     <em:version>0.1</em:version>
 
     <!-- The name of the add-on; intended for display in the UI. -->
-    <em:name>My Addon</em:name>
+    <em:name>MyAddon</em:name>
 
     <!-- A short description to display in the user interface. -->
-    <em:description>Description about My Addon</em:description>
+    <em:description>Description about MyAddon</em:description>
 
     <!-- The name of the developer to display in the user interface. -->
     <em:creator>My Name</em:creator>
