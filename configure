@@ -30,13 +30,37 @@ function replace {
     eval $files -print0 | xargs -0 sed -i '' 's/'"$oldValue"'/'"$newValue"'/g'
 
     if [ $verbose == "1" ]; then
-      printf "Done. Modified files:\n\n"
+      echo "Done. Modified files:"
       eval $files | xargs egrep $newValue -l
       printf "\n"
     fi
   else
     echo "No changes were made to the addon's $fieldName."
   fi
+}
+
+function proxy {
+  profileName=$1
+  addonId=$2
+  addonDir=$3
+
+  if [[ "`uname`" == "Linux" ]]; then
+    profile="~/.mozilla/firefox/*$profileName"
+  elif [[ "`uname`" == "Darwin" ]]; then
+    profile="~/Library/Application\ Support/Firefox/Profiles/*$profileName"
+  else
+    echo "Your operating system is not supported yet. Please refer to the readme for manually creating an extension proxy file."
+    exit 1
+  fi
+
+  eval cd $profile
+  mkdir extensions &> /dev/null
+  touch extensions/$addonId@mozilla.com
+  echo $addonDir > extensions/$addonId@mozilla.com
+
+  printf "\n"
+  echo "This add-on will be installed in the '$profileName' profile next time you open Firefox."
+  echo "Tip: whenever you change something, go to about:addons in Firefox and re-enable the add-on to update it."
 }
 
 if [[ $# -eq 0 ]]; then
@@ -47,12 +71,14 @@ if [[ $# -eq 0 ]]; then
   echo "  -d <description>    Specify the description, shown on addons.mozilla.org"
   echo "  -a <autor name>     Specify the author, shown on addons.mozilla.org"
   echo "  -h <url>            Specify the add-on's support homepage url"
+  echo "  -P <profile>        Create an extension proxy file for this add-on, for the specified profile"
   exit 1
 fi
 
-while getopts "i:n:v:d:a:h:" opt; do
+while getopts "i:n:v:d:a:h:P:" opt; do
   case $opt in
     i)
+      ADDON_ID=$OPTARG
       replace "id" "my-addon" $OPTARG 1
       ;;
     n)
@@ -73,6 +99,9 @@ while getopts "i:n:v:d:a:h:" opt; do
     h)
       regex="\(<em:homepageURL>\).*\(<\/em:homepageURL>\)"
       replace "homepage" $regex '\1'"$OPTARG"'\2' 0 1
+      ;;
+    P)
+      proxy $OPTARG $ADDON_ID `pwd`
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
