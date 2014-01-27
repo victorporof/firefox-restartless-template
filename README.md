@@ -60,7 +60,7 @@ If you use git tags to nicely version your project, you can use `make xpi` to bu
 
 ## Publish your add-on
 
-Go to https://addons.mozilla.org/en-US/developers/ and publish your new awesome add-on.
+Go to https://addons.mozilla.org/developers/ and publish your new awesome add-on.
 
 ## Read more
 
