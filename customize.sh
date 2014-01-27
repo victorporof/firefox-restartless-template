@@ -41,7 +41,18 @@ function replace {
   fi
 }
 
-while getopts "i:n:d:v:h:" opt; do
+if [[ $# -eq 0 ]]; then
+  echo "Customize this add-on template:"
+  echo "  -i <identifier>     Specify the id, used to identify resources and files in this bundle"
+  echo "  -n <project name>   Specify the name, displayed in the Toolbox and various Firefox menus"
+  echo "  -v <version>        Specify the version, useful for tracking bugs"
+  echo "  -d <description>    Specify the description, shown on addons.mozilla.org"
+  echo "  -a <autor name>     Specify the author, shown on addons.mozilla.org"
+  echo "  -h <url>            Specify the add-on's support homepage url"
+  exit 1
+fi
+
+while getopts "i:n:v:d:a:h:" opt; do
   case $opt in
     i)
       replace "id" "my-addon" $OPTARG 1
@@ -49,13 +60,17 @@ while getopts "i:n:d:v:h:" opt; do
     n)
       replace "name" "MyAddon" $OPTARG 1
       ;;
+    v)
+      regex="\(<em:version>\).*\(<\/em:version>\)"
+      replace "version" $regex '\1'"$OPTARG"'\2' 0 1
+      ;;
     d)
       regex="\(<em:description>\).*\(<\/em:description>\)"
       replace "description" $regex '\1'"$OPTARG"'\2' 0 1
       ;;
-    v)
-      regex="\(<em:version>\).*\(<\/em:version>\)"
-      replace "version" $regex '\1'"$OPTARG"'\2' 0 1
+    a)
+      regex="\(<em:creator>\).*\(<\/em:creator>\)"
+      replace "author" $regex '\1'"$OPTARG"'\2' 0 1
       ;;
     h)
       regex="\(<em:homepageURL>\).*\(<\/em:homepageURL>\)"

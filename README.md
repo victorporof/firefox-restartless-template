@@ -22,10 +22,10 @@ __Step 1__. It's a good idea to customize your add-on's id and name *now*, befor
 
 Initially, please try to only use alphanumeric characters for the add-on's id and name.
 
-Optionally, you can also specify the add-on's description and version:
+Optionally, you can also specify the add-on's author, version, description etc.:
 
-* `./customize.sh -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
 * `./customize.sh -v 1.0` to set the version; this is useful for tracking bugs and letting your users know which add-on version they're using.
+* `./customize.sh -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
 
 __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
