@@ -28,11 +28,14 @@ function replace {
 
   if [[ $REPLY == "y" ]]; then
     eval $files -print0 | xargs -0 sed -i '' 's/'"$oldValue"'/'"$newValue"'/g'
+    printf "Done."
 
     if [ $verbose == "1" ]; then
-      echo "Done. Modified files:"
+      echo " Modified files:"
       eval $files | xargs egrep $newValue -l
       printf "\n"
+    else
+      printf "\n\n"
     fi
   else
     echo "No changes were made to the addon's $fieldName."
@@ -63,9 +66,11 @@ function proxy {
   mkdir extensions &> /dev/null
   touch extensions/$addonId@mozilla.com
   echo $addonDir > extensions/$addonId@mozilla.com
+  echo "Done."
 
+  printf "\n"
   echo "This add-on will be installed in the '$profileName' profile next time you open Firefox."
-  echo "Tip: whenever you change something, go to about:addons in Firefox and re-enable the add-on to update it."
+  echo "Tip: whenever you change something, go to about:addons in Firefox and re-enable the add-on to quickly update it."
 }
 
 if [[ $# -eq 0 ]]; then
