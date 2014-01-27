@@ -69,6 +69,7 @@ function proxy {
     exit 1
   fi
 
+  eval cd $profile
   mkdir extensions &> /dev/null
   touch extensions/$addonId@mozilla.com
   echo $addonDir > extensions/$addonId@mozilla.com
