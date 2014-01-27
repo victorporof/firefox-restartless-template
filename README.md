@@ -19,7 +19,7 @@ __Step 1__. It's a good idea to customize your add-on's id and name *now*, befor
 
 * `./customize.sh -i awesome-addon-id` to set the id; this will be useful when creating an extension proxy file.
 * `./customize.sh -n AwesomeTool` to set the name; this will be displayed in the Toolbox and various Firefox menus.
-* `./customize.sh -n "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
+* `./customize.sh -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
 
 Initially, please try to only use alphanumeric characters for the add-on's id and name.
 
