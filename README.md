@@ -26,6 +26,7 @@ Optionally, you can also specify the add-on's author, version, description etc.:
 
 * `./configure -v 1.0` to set the version; this is useful for tracking bugs and letting your users know which add-on version they're using.
 * `./configure -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
+* `./configure -a "Your name"` to set the autor's name; this will be, as well, shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/).
 
 __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
