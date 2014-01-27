@@ -7,7 +7,7 @@ Simple template project for developing restartless Firefox Developer Tools addon
 
 ## Workflow
 
-This template allows you to create restartless Firefox add-ons. This means that your workflow can also benefit from it, and reduce the (likely annoying) code->build->install lag. See documentation about [setting up a bootstrapped addon extension environment](https://developer.mozilla.org/en-US/docs/Setting_up_extension_development_environment#Firefox_extension_proxy_file) for some in-depth explanation on how to do this.
+This template allows you to create restartless Firefox add-ons. This means that your workflow can also benefit from it, and reduce the (likely annoying) code->build->install lag. See documentation about [setting up a bootstrapped addon extension environment](https://developer.mozilla.org/docs/Setting_up_extension_development_environment#Firefox_extension_proxy_file) for some in-depth explanation on how to do this.
 
 tl;dr: A "Firefox extension proxy file" is a simple way of telling Firefox where an add-on is located, via an absolute path. Whenever you change the contents of the add-on, simply re-enabling it will update it; no need to tediously drag-and-drop-install it anymore.
 
@@ -25,8 +25,8 @@ Initially, please try to only use alphanumeric characters for the add-on's id an
 Optionally, you can also specify the add-on's author, version, description etc.:
 
 * `./configure -v 1.0` to set the version; this is useful for tracking bugs and letting your users know which add-on version they're using.
-* `./configure -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
-* `./configure -a "Your name"` to set the autor's name; this will be, as well, shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/).
+* `./configure -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/developers/) when publishing your add-on.
+* `./configure -a "Your name"` to set the autor's name; this will be, as well, shown on [addons.mozilla.org](https://addons.mozilla.org/developers/).
 
 __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
@@ -34,7 +34,7 @@ __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozilla
 * Linux: `~/.mozilla/firefox/<profile folder>`
 * Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile folder>`
 
-Optionally, you might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes during the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
+Optionally, you might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes during the development process. Read more about how to do this [here](https://developer.mozilla.org/Add-ons/Setting_up_extension_development_environment#Development_profile).
 
 __Step 3__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
@@ -64,6 +64,6 @@ Go to https://addons.mozilla.org/developers/ and publish your new awesome add-on
 
 ## Read more
 
-There's some (under development) documentation about the [Developer Tools API](https://developer.mozilla.org/en-US/docs/Tools/DevToolsAPI). If you need help, please ask around on irc.mozilla.org, in #devtools.
+There's some (under development) documentation about the [Developer Tools API](https://developer.mozilla.org/docs/Tools/DevToolsAPI). If you need help, please ask around on irc.mozilla.org, in #devtools.
 
 Thank you. Have fun!
