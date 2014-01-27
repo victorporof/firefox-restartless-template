@@ -42,8 +42,8 @@ function replace {
 
 function proxy {
   profileName=$1
-  addonId=$2
-  addonDir=$3
+  addonDir=$2
+  addonId=`sed -n 's/<em:id>\(.*\)@mozilla.com<\/em:id>/\1/p' install.rdf | head -n 1 | tr -d ' '`
 
   if [[ "`uname`" == "Linux" ]]; then
     profile="~/.mozilla/firefox/*$profileName"
@@ -54,12 +54,16 @@ function proxy {
     exit 1
   fi
 
+  read -p "This '$addonId' extension will be linked with the '$profileName' profile. Continue? (y/n)? "
+  if [[ $REPLY != "y" ]]; then
+    exit 1
+  fi
+
   eval cd $profile
   mkdir extensions &> /dev/null
   touch extensions/$addonId@mozilla.com
   echo $addonDir > extensions/$addonId@mozilla.com
 
-  printf "\n"
   echo "This add-on will be installed in the '$profileName' profile next time you open Firefox."
   echo "Tip: whenever you change something, go to about:addons in Firefox and re-enable the add-on to update it."
 }
@@ -79,7 +83,6 @@ fi
 while getopts "i:n:v:d:a:h:P:" opt; do
   case $opt in
     i)
-      ADDON_ID=$OPTARG
       replace "id" "my-addon" $OPTARG 1
       ;;
     n)
@@ -102,7 +105,7 @@ while getopts "i:n:v:d:a:h:P:" opt; do
       replace "homepage" $regex '\1'"$OPTARG"'\2' 0 1
       ;;
     P)
-      proxy $OPTARG $ADDON_ID `pwd`
+      proxy $OPTARG `pwd`
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
