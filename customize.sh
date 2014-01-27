@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files='find . -type f -not -path "*.git*" -not -path "*skin*" -not -path "*$0*"'
+files='find . -type f -not \( -path "*$0*" -o -path "*git*" -o -path "*skin*" -o -path "*.md*" -o -ipath "*make*" \)'
 
 function replace {
   if [[ $1 == $2 ]]; then
