@@ -36,6 +36,7 @@ function replace {
     fi
   else
     echo "No changes were made to the addon's $fieldName."
+    exit 1
   fi
 }
 
