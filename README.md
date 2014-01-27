@@ -22,6 +22,8 @@ cd Restartless-Template
 ./configure -i "your-addon-id" -n "YourAddonName" -d "Your addon description" -a "Your name" -P "default"
 ```
 
+That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox: click the "Disable", then the "Enable" button for your add-on.
+
 #### The detailed version
 
 __Step 0__. Clone this repository.
@@ -58,8 +60,6 @@ For example, the extension proxy file's contents could be `~/home/myself/work/Re
 __Step 5__. Restart Firefox. A dialog asking you whether "you would like to modify Firefox with the add-on" might show up; please allow the installation and continue.
 
 Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
-
-That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox: click the "Disable", then the "Enable" button for your add-on.
 
 ## Releasing
 
