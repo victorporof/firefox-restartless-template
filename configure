@@ -27,7 +27,14 @@ function replace {
   fi
 
   if [[ $REPLY == "y" ]]; then
-    eval $files -print0 | xargs -0 sed -i '' 's/'"$oldValue"'/'"$newValue"'/g'
+    if [[ "`uname`" == "Linux" ]]; then
+      eval $files -print0 | xargs -0 sed -i 's/'"$oldValue"'/'"$newValue"'/g'
+    elif [[ "`uname`" == "Darwin" ]]; then
+      eval $files -print0 | xargs -0 sed -i '' 's/'"$oldValue"'/'"$newValue"'/g'
+    else
+      echo "Your operating system is not supported yet."
+      exit 1
+    fi
     printf "Done."
 
     if [ $verbose == "1" ]; then
