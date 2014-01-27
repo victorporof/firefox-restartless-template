@@ -13,6 +13,17 @@ tl;dr: A "Firefox extension proxy file" is a simple way of telling Firefox where
 
 ### How to iterate fast
 
+#### The quick and easy version
+
+This will probably work in most unix-like shell environments, like in OS X and Linux:
+```bash
+git clone https://github.com/victorporof/Restartless-Template.git
+cd Restartless-Template
+./configure -i "your-addon-id" -n "YourAddonName" -d "Your addon description" -a "Your name" -P "default"
+```
+
+#### The detailed version
+
 __Step 0__. Clone this repository.
 
 __Step 1__. It's a good idea to customize your add-on's id and name *now*, before things get too complex. By default, this template has a vanilla `my-addon` id and `MyAddon` name. You should modify this using `./configure`.
