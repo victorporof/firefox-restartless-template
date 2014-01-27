@@ -11,7 +11,7 @@ function replace {
   if [[ $REPLY == "y" ]]; then
     eval $files -print0 | xargs -0 sed -i '' 's/'$1'/'$2'/g'
     printf "Done. Modified files:\n\n"
-    git ls-files -m
+    eval $files | xargs egrep $2 -l
     printf "\nMake sure you also update the extension proxy file's name.\nRefer to the README.md for more information.\n"
   else
     echo "No changes were made to the addon's $3."
