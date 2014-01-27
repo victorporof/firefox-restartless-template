@@ -33,7 +33,7 @@ __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozilla
 * Linux: `~/.mozilla/firefox/<profile folder>`
 * Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile folder>`
 
-You might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes during the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
+Optionally, you might want to create a new Firefox profile used just for the development of your add-on. This will prevent unexpectedly and accidentally altering your main profile if you make mistakes during the development process. Read more about how to do this [here](https://developer.mozilla.org/en-US/Add-ons/Setting_up_extension_development_environment#Development_profile).
 
 __Step 3__. Create a file in the "extensions" directory under your profile directory with the extension's ID as the file name. If there's no "extensions" folder, create it. The extension's ID is in the [install.rdf](https://github.com/victorporof/Restartless-Template/blob/master/install.rdf#L9) file.
 
@@ -47,7 +47,7 @@ __Step 5__. Restart Firefox. A dialog asking you whether "you would like to modi
 
 Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
 
-That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox.
+That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox: click the "Disable", then the "Enable" button for your add-on.
 
 ## Releasing
 
