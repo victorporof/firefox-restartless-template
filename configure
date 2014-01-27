@@ -53,16 +53,23 @@ function proxy {
   elif [[ "`uname`" == "Darwin" ]]; then
     profile="~/Library/Application\ Support/Firefox/Profiles/*$profileName"
   else
-    echo "Your operating system is not supported yet. Please refer to the readme for manually creating an extension proxy file."
+    echo "Your operating system is not supported yet."
+    echo "Please refer to the readme for manually creating an extension proxy file."
     exit 1
   fi
+
 
   read -p "This '$addonId' extension will be linked with the '$profileName' profile. Continue? (y/n)? "
   if [[ $REPLY != "y" ]]; then
     exit 1
   fi
 
-  eval cd $profile
+  if [[ -n "`eval cd $profile 2>&1`" ]]; then
+    echo "The specified profile does not seem to exist at $profile"
+    echo "Please refer to the readme for manually creating an extension proxy file."
+    exit 1
+  fi
+
   mkdir extensions &> /dev/null
   touch extensions/$addonId@mozilla.com
   echo $addonDir > extensions/$addonId@mozilla.com
