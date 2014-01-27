@@ -41,7 +41,7 @@ function replace {
   fi
 }
 
-while getopts "i:n:d:" opt; do
+while getopts "i:n:d:v:" opt; do
   case $opt in
     i)
       replace "id" "my-addon" $OPTARG 1
@@ -52,6 +52,10 @@ while getopts "i:n:d:" opt; do
     d)
       regex="\(<em:description>\).*\(<\/em:description>\)"
       replace "description" $regex '\1'"$OPTARG"'\2' 0 1
+      ;;
+    v)
+      regex="\(<em:version>\).*\(<\/em:version>\)"
+      replace "version" $regex '\1'"$OPTARG"'\2' 0 1
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
