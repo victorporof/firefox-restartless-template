@@ -32,9 +32,7 @@ function replace {
     if [ $verbose == "1" ]; then
       printf "Done. Modified files:\n\n"
       eval $files | xargs egrep $newValue -l
-    fi
-    if [[ $fieldName == "id" ]]; then
-      printf "\nMake sure you also update the extension proxy file's name.\nRefer to the README.md for more information.\n"
+      printf "\n"
     fi
   else
     echo "No changes were made to the addon's $fieldName."
