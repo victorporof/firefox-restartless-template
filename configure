@@ -58,7 +58,6 @@ function proxy {
     exit 1
   fi
 
-
   read -p "This '$addonId' extension will be linked with the '$profileName' profile. Continue? (y/n)? "
   if [[ $REPLY != "y" ]]; then
     exit 1
