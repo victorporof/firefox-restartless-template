@@ -15,17 +15,17 @@ tl;dr: A "Firefox extension proxy file" is a simple way of telling Firefox where
 
 __Step 0__. Clone this repository.
 
-__Step 1__. It's a good idea to customize your add-on's id and name *now*, before things get too complex. By default, this template has a vanilla `my-addon` id and `MyAddon` name. You should modify this.
+__Step 1__. It's a good idea to customize your add-on's id and name *now*, before things get too complex. By default, this template has a vanilla `my-addon` id and `MyAddon` name. You should modify this using `./configure`.
 
-* `./customize.sh -i awesome-addon-id` to set the id; this will be useful when creating an extension proxy file.
-* `./customize.sh -n AwesomeTool` to set the name; this will be displayed in the Toolbox and various Firefox menus.
+* `./configure -i awesome-addon-id` to set the id; this will be useful when creating an extension proxy file.
+* `./configure -n AwesomeTool` to set the name; this will be displayed in the Toolbox and various Firefox menus.
 
 Initially, please try to only use alphanumeric characters for the add-on's id and name.
 
 Optionally, you can also specify the add-on's author, version, description etc.:
 
-* `./customize.sh -v 1.0` to set the version; this is useful for tracking bugs and letting your users know which add-on version they're using.
-* `./customize.sh -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
+* `./configure -v 1.0` to set the version; this is useful for tracking bugs and letting your users know which add-on version they're using.
+* `./configure -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
 
 __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
