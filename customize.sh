@@ -7,6 +7,11 @@ function replace {
     echo "The add-on already uses this $3."
     exit 1
   fi
+  if [ -z "`eval $files | xargs egrep $1 -l`" ]; then
+    echo "The addon's $3 was already customized."
+    exit 1
+  fi
+
   read -p "This add-on's $3 will be changed from '$1' to '$2'. Continue? (y/n)? "
   if [[ $REPLY == "y" ]]; then
     eval $files -print0 | xargs -0 sed -i '' 's/'$1'/'$2'/g'
