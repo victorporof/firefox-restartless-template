@@ -6,7 +6,7 @@
  * for the default colors used in Firefox Developer Tools */
 
 #body {
-  background: url(background-noise-toolbar.png), #343c45; /* Dark toolbars */
+  background: #343c45; /* Dark toolbars */
 }
 
 #hello-world {
