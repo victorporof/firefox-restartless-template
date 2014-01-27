@@ -19,9 +19,13 @@ __Step 1__. It's a good idea to customize your add-on's id and name *now*, befor
 
 * `./customize.sh -i awesome-addon-id` to set the id; this will be useful when creating an extension proxy file.
 * `./customize.sh -n AwesomeTool` to set the name; this will be displayed in the Toolbox and various Firefox menus.
-* `./customize.sh -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
 
 Initially, please try to only use alphanumeric characters for the add-on's id and name.
+
+Optionally, you can also specify the add-on's description and version:
+
+* `./customize.sh -d "An awesome description"` to set the description; this will be shown on [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/) when publishing your add-on.
+* `./customize.sh -v 1.0` to set the version; this is useful for tracking bugs and letting your users know which add-on version they're using.
 
 __Step 2__. Locate your Firefox profile directory. Read [this](http://kb.mozillazine.org/Profile_folder_-_Firefox) for more information. It's usually in these folders:
 
