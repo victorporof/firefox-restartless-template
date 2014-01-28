@@ -28,6 +28,7 @@ MyAddonPanel.prototype = {
     return this.panelWin.startup().then(() => {
       this.isReady = true;
       this.emit("ready");
+      return this;
     });
   },
 
