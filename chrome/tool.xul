@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <p>&YourAddonNameUI.label;</p>
+    <p>&MyAddonUI.label;</p>
   </body>
 
 </html>
