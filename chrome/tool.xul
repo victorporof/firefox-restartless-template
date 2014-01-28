@@ -1,16 +1,26 @@
 <?xml version="1.0"?>
-<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
-<?xml-stylesheet href="chrome://browser/skin/devtools/common.css" type="text/css"?>
-<?xml-stylesheet href="chrome://my-addon/skin/style.css" type="text/css"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
 <!DOCTYPE window [
-<!ENTITY % MyAddonDTD SYSTEM "chrome://my-addon/locale/strings.dtd">
- %MyAddonDTD;
+  <!ENTITY % MyAddonDTD SYSTEM "chrome://my-addon/locale/strings.dtd">
+   %MyAddonDTD;
 ]>
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/javascript" src="tool.js"/>
-  <hbox id="body" align="center" pack="center" flex="1">
-    <label id="hello-world" value="&MyAddonUI.label;"/>
-  </hbox>
-</window>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <head>
+    <link rel="stylesheet" href="chrome://browser/skin/"/>
+    <link rel="stylesheet" href="chrome://browser/skin/devtools/common.css"/>
+    <link rel="stylesheet" href="chrome://my-addon/skin/style.css"/>
+
+    <xul:script src="tool.js"/>
+  </head>
+
+  <body>
+    <p>&YourAddonNameUI.label;</p>
+  </body>
+
+</html>
