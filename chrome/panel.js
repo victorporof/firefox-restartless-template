@@ -14,7 +14,15 @@ XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
 XPCOMUtils.defineLazyModuleGetter(this, "promise",
   "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
 
-this.MyAddonPanel = function MyAddonPanel(iframeWindow, toolbox) {
+/**
+ * This is the add-on's panel, wrapping the tool's contents.
+ *
+ * @param nsIDOMWindow iframeWindow
+ *        The iframe window containing the tool's markup and logic.
+ * @param Toolbox toolbox
+ *        The developer tools toolbox, containing all tools.
+ */
+function MyAddonPanel(iframeWindow, toolbox) {
   this.panelWin = iframeWindow;
   this._toolbox = toolbox;
 
@@ -24,6 +32,13 @@ this.MyAddonPanel = function MyAddonPanel(iframeWindow, toolbox) {
 MyAddonPanel.prototype = {
   get target() this._toolbox.target,
 
+  /**
+   * Open is effectively an asynchronous constructor.
+   * Called when the user select the tool tab.
+   *
+   * @return object
+   *         A promise that is resolved when the tool completes opening.
+   */
   open: function() {
     return this.panelWin.startup().then(() => {
       this.isReady = true;
@@ -32,6 +47,12 @@ MyAddonPanel.prototype = {
     });
   },
 
+  /**
+   * Called when the user closes the toolbox or disables the add-on.
+   *
+   * @return object
+   *         A promise that is resolved when the tool completes closing.
+   */
   destroy: function() {
     return this.panelWin.shutdown().then(() => {
       this.isReady = false;
