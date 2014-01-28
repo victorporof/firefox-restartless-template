@@ -22,14 +22,14 @@ this.MyAddonPanel = function MyAddonPanel(iframeWindow, toolbox) {
 };
 
 MyAddonPanel.prototype = {
+  get target() this._toolbox.target,
+
   open: function() {
     return this.panelWin.startup().then(() => {
       this.isReady = true;
       this.emit("ready");
     });
   },
-
-  get target() this._toolbox.target,
 
   destroy: function() {
     return this.panelWin.shutdown().then(() => {
