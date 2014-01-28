@@ -13,7 +13,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
 XPCOMUtils.defineLazyModuleGetter(this, "promise",
   "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
 
-function startup(aToolbox) {
+function startup() {
   return promise.resolve(null);
 }
 
