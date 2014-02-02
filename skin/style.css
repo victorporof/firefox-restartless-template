@@ -5,10 +5,10 @@
 /* Go to https://developer.mozilla.org/docs/Tools/DevToolsColors
  * for the default colors used in Firefox Developer Tools */
 
-body {
-  background: #343c45; /* Dark toolbars */
+.theme-dark body > p {
+  color: #f5f7fa;
 }
 
-body > p {
-  color: #f5f7fa; /* Light foreground text */
+.theme-light body > p {
+  color: #ed2655;
 }
