@@ -22,6 +22,10 @@ cd Restartless-Template
 ./configure -i "your-addon-id" -n "YourAddonName" -d "Your addon description" -a "Your name" -P "default"
 ```
 
+__Caveats__: Temporarily, until [issue #3](https://github.com/victorporof/Restartless-Template/issues/3) is fixed, you can use only `./configure` once after cloning the repo, and the params syntax is very strict:
+* `-i` and `-n` mustn't contains spaces, and use only alphanumeric characters
+* `-P` must be the last param
+
 That's it :) Now, after you change something in the add-on, simply re-enable it for it to update automatically. You can do this from the [about:addons](about:addons) page in Firefox: click the "Disable", then the "Enable" button for your add-on.
 
 #### The detailed version
