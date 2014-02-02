@@ -40,7 +40,7 @@ MyAddonPanel.prototype = {
    *         A promise that is resolved when the tool completes opening.
    */
   open: function() {
-    return this.panelWin.startup().then(() => {
+    return this.panelWin.startup(this._toolbox, this.target).then(() => {
       this.isReady = true;
       this.emit("ready");
       return this;

@@ -20,10 +20,14 @@ XPCOMUtils.defineLazyModuleGetter(this, "promise",
 /**
  * Called when the user select the tool tab.
  *
+ * @param Toolbox toolbox
+ *        The developer tools toolbox, containing all tools.
+ * @param object target
+ *        The local or remote target being debugged.
  * @return object
  *         A promise that should be resolved when the tool completes opening.
  */
-function startup() {
+function startup(toolbox, target) {
   return promise.resolve();
 }
 
