@@ -15,7 +15,8 @@ function replace {
       exit 1
     fi
     if [ -z "`eval $files | xargs egrep $oldValue -l`" ]; then
-      echo "ERROR: The addon's $fieldName was already customized. Please clone the repository again to create a new add-on."
+      echo "ERROR: The addon's $fieldName was already customized."
+      echo "Please clone the repository again to create a new add-on."
       exit 1
     fi
   fi
@@ -54,6 +55,7 @@ function proxy {
   profileName=$1
   addonDir=$2
   addonId=`sed -n 's/<em:id>\(.*\)@mozilla.com<\/em:id>/\1/p' install.rdf | head -n 1 | tr -d ' '`
+  forced=$3
 
   if [[ "`uname`" == "Linux" ]]; then
     profile="~/.mozilla/firefox/*$profileName"
@@ -65,9 +67,11 @@ function proxy {
     exit 1
   fi
 
-  read -p "This '$addonId' extension will be linked with the '$profileName' profile. Continue? (y/n)? "
-  if [[ $REPLY != "y" ]]; then
-    exit 1
+  if [[ $forced -ne 1 ]]; then
+    read -p "This '$addonId' extension will be linked with the '$profileName' profile. Continue? (y/n)? "
+    if [[ $REPLY != "y" ]]; then
+      exit 1
+    fi
   fi
 
   if [[ -n "`eval cd $profile 2>&1`" ]]; then
@@ -124,7 +128,7 @@ while getopts "i:n:v:d:a:h:P:" opt; do
       replace "homepage" $regex '\1'"$OPTARG"'\2' 0 1
       ;;
     P)
-      proxy $OPTARG `pwd`
+      INSTALL_PROFILE=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -136,3 +140,15 @@ while getopts "i:n:v:d:a:h:P:" opt; do
       ;;
   esac
 done
+
+if [[ $INSTALL_PROFILE ]]; then
+  proxy $INSTALL_PROFILE `pwd`
+else
+  read -p "WARNING: No user profile specified. Do you want this add-on to be installed next time you open Firefox? (y/n) "
+  if [[ $REPLY == "y" ]]; then
+    proxy "default" `pwd` 1
+  else
+    echo "WARNING: This add-on won't be automatically installed next time you open Firefox."
+    echo "For a faster development process, please refer to the readme for creating an extension proxy file."
+  fi
+fi
