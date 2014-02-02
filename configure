@@ -15,7 +15,7 @@ function replace {
       exit 1
     fi
     if [ -z "`eval $files | xargs egrep $oldValue -l`" ]; then
-      echo "The addon's $fieldName was already customized."
+      echo "ERROR: The addon's $fieldName was already customized. Please clone the repository again to create a new add-on."
       exit 1
     fi
   fi
@@ -32,7 +32,7 @@ function replace {
     elif [[ "`uname`" == "Darwin" ]]; then
       eval $files -print0 | xargs -0 sed -i '' 's/'"$oldValue"'/'"$newValue"'/g'
     else
-      echo "Your operating system is not supported yet."
+      echo "ERROR: Your operating system is not supported yet."
       exit 1
     fi
     printf "Done."
@@ -45,7 +45,7 @@ function replace {
       printf "\n\n"
     fi
   else
-    echo "No changes were made to the addon's $fieldName."
+    echo "WARNING: No changes were made to the addon's $fieldName."
     exit 1
   fi
 }
@@ -60,7 +60,7 @@ function proxy {
   elif [[ "`uname`" == "Darwin" ]]; then
     profile="~/Library/Application\ Support/Firefox/Profiles/*$profileName"
   else
-    echo "Your operating system is not supported yet."
+    echo "ERROR: Your operating system is not supported yet."
     echo "Please refer to the readme for manually creating an extension proxy file."
     exit 1
   fi
@@ -71,7 +71,7 @@ function proxy {
   fi
 
   if [[ -n "`eval cd $profile 2>&1`" ]]; then
-    echo "The specified profile does not seem to exist at $profile"
+    echo "ERROR: The specified profile does not seem to exist at $profile"
     echo "Please refer to the readme for manually creating an extension proxy file."
     exit 1
   fi
