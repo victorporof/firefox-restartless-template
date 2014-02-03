@@ -65,6 +65,21 @@ __Step 5__. Restart Firefox. A dialog asking you whether "you would like to modi
 
 Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
 
+## Theming
+
+Starting with Firefox 29, the developer tools can be themed "light" or "dark", based on a user preference in the Options panel of the Toolbox. To make your add-on look good regardless of the theme, you should use the `.theme-dark` and `.theme-light` selectors, as exemplified in [skin/style.css](https://github.com/victorporof/Restartless-Template/blob/master/skin/style.css).
+
+```css
+.theme-dark #my-node {
+  color: #f5f7fa;
+}
+.theme-light #my-node {
+  color: #ed2655;
+}
+```
+
+Take a look at [this wiki](https://developer.mozilla.org/en-US/docs/Tools/DevToolsColors) for the recommended color pallete used by default throughout the Firefox developer tools.
+
 ## Making the add-on work for remote targets
 
 The Firefox Developer Tools have support for remote debugging. The protocol is described in depth [here](https://wiki.mozilla.org/Remote_Debugging_Protocol) and the remote procedures are described [here](https://developer.mozilla.org/en-US/Firefox_OS/Firefox_OS_usage_tips/Remote_debugging). If you want to make your add-on work with remote debugging, you'll have to support remote targets and [allow the add-on to use them](https://github.com/victorporof/Restartless-Template/blob/master/bootstrap.js#L59).
