@@ -67,7 +67,7 @@ Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addo
 
 ## Theming
 
-Starting with Firefox 29, the developer tools can be themed "light" or "dark", based on a user preference in the Options panel of the Toolbox. To make your add-on look good regardless of the theme, you should use the `.theme-dark` and `.theme-light` selectors, as exemplified in [skin/style.css](https://github.com/victorporof/Restartless-Template/blob/master/skin/style.css).
+Starting with Firefox 29, the developer tools can be "light" or "dark" themed, based on a user preference in the Options panel of the Toolbox. To make your add-on look good regardless of the theme, you should use the `.theme-dark` and `.theme-light` selectors, as exemplified in [skin/style.css](https://github.com/victorporof/Restartless-Template/blob/master/skin/style.css).
 
 ```css
 .theme-dark #my-node {
@@ -78,7 +78,7 @@ Starting with Firefox 29, the developer tools can be themed "light" or "dark", b
 }
 ```
 
-Take a look at [this wiki](https://developer.mozilla.org/en-US/docs/Tools/DevToolsColors) for the recommended color pallete used by default throughout the Firefox developer tools.
+Take a look at [this wiki](https://developer.mozilla.org/en-US/docs/Tools/DevToolsColors) for the recommended pallete used by default throughout the Firefox developer tools. Try using those colors for a consistent look and feel.
 
 ## Making the add-on work for remote targets
 
