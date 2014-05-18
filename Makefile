@@ -1,22 +1,23 @@
 PROJECT="my-addon"
-PWD=`pwd`
-BUILD="build"
-VERSION=`git describe --tags`
-NAME="${PROJECT}-${VERSION}.xpi"
-XPI="${PWD}/${BUILD}/${NAME}"
+VERSION="0.1"
 
-.PHONY: latest xpi clean
+CURRENT_DIR=`pwd`
+BUILD_DIR="build"
+DIST_NAME="${PROJECT}-${VERSION}.xpi"
+DIST_PATH="${CURRENT_DIR}/${BUILD_DIR}/${DIST_NAME}"
+
+.PHONY: latest head clean
 
 latest:
-	@echo "Building latest '${XPI}'..."
-	@mkdir -p ${BUILD}
-	@zip -r ${XPI} * -x "${BUILD}/*" -x "Makefile" -x ".git/*"
+	@echo "Building latest '${DIST_PATH}'..."
+	@mkdir -p ${BUILD_DIR}
+	@zip -r ${DIST_PATH} * -x "${BUILD_DIR}/*" -x "Makefile" -x ".git/*"
 
-xpi:
-	@echo "Building '${XPI}'..."
-	@mkdir -p ${BUILD}
-	@git archive --format=zip -o ${XPI} HEAD
+head:
+	@echo "Building '${DIST_PATH}'..."
+	@mkdir -p ${BUILD_DIR}
+	@git archive --format=zip -o ${DIST_PATH} HEAD
 
 clean:
-	@echo "Removing '${PWD}/${BUILD}'..."
-	@rm -rf ${BUILD}
+	@echo "Removing '${CURRENT_DIR}/${BUILD_DIR}'..."
+	@rm -rf ${BUILD_DIR}
