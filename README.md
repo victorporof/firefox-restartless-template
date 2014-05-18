@@ -65,6 +65,10 @@ __Step 5__. Restart Firefox. A dialog asking you whether "you would like to modi
 
 Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
 
+## Debugging
+
+Starting with Firefox 31 ([download Aurora](https://www.mozilla.org/en-US/firefox/channel/#aurora)), you can easily debug your add-on using the built-in developer tools. Simply go to the [about:addons](about:addons) page and click the "Debug" button next to your add-on. Keep in mind that scripts are lazily evaluated, so if no code was executed, no source files will be shown.
+
 ## Theming
 
 Starting with Firefox 29, the developer tools can be "light" or "dark" themed, based on a user preference in the Options panel of the Toolbox. To make your add-on look good regardless of the theme, you should use the `.theme-dark` and `.theme-light` selectors, as exemplified in [skin/style.css](https://github.com/victorporof/Restartless-Template/blob/master/skin/style.css).
@@ -80,9 +84,9 @@ Starting with Firefox 29, the developer tools can be "light" or "dark" themed, b
 
 Take a look at [this wiki](https://developer.mozilla.org/en-US/docs/Tools/DevToolsColors) for the recommended pallete used by default throughout the Firefox developer tools. Try using those colors for a consistent look and feel.
 
-## Making the add-on work for remote targets
+## Remoting
 
-The Firefox Developer Tools have support for remote debugging. The protocol is described in depth [here](https://wiki.mozilla.org/Remote_Debugging_Protocol) and the remote procedures are described [here](https://developer.mozilla.org/en-US/Firefox_OS/Firefox_OS_usage_tips/Remote_debugging). If you want to make your add-on work with remote debugging, you'll have to support remote targets and [allow the add-on to use them](https://github.com/victorporof/Restartless-Template/blob/master/bootstrap.js#L59).
+The Firefox Developer Tools have support for remote debugging. The protocol is described in depth [here](https://wiki.mozilla.org/Remote_Debugging_Protocol). If you want to make your add-on work with remote debugging, you'll have to support remote targets and [allow the add-on to use them](https://github.com/victorporof/Restartless-Template/blob/master/bootstrap.js#L59).
 
 Certain tools in Firefox will always use remote targets, so, for example, your add-on won't show up in the [App Manager](https://developer.mozilla.org/en-US/Firefox_OS/Using_the_App_Manager) if remote targets are not supported.
 
@@ -96,7 +100,7 @@ To wipe the build directory, use `make clean`.
 
 If you use git tags to nicely version your project, you can use `make head` to build a "release" version of your add-on based on the latest commit. This will not take uncommitted changes into consideration.
 
-## Publish your add-on
+## Publishing
 
 Go to https://addons.mozilla.org/developers/ and publish your new awesome add-on.
 
