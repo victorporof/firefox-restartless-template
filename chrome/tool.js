@@ -40,3 +40,9 @@ function startup(toolbox, target) {
 function shutdown() {
   return promise.resolve();
 }
+
+/**
+ * DOM query helpers.
+ */
+function $(aSelector, aTarget = document) aTarget.querySelector(aSelector);
+function $$(aSelector, aTarget = document) aTarget.querySelectorAll(aSelector);
