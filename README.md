@@ -65,6 +65,10 @@ __Step 5__. Restart Firefox. A dialog asking you whether "you would like to modi
 
 Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addon in the Toolbox.
 
+## Debugging
+
+Starting with Firefox 31 ([download Aurora](https://www.mozilla.org/en-US/firefox/channel/#aurora)), you can easily debug your add-on using the built-in developer tools. Simply go to the [about:addons](about:addons) page and click the "Debug" button next to your add-on. Keep in mind that scripts are lazily evaluated, so if no code was executed, no source files will be shown.
+
 ## Theming
 
 Starting with Firefox 29, the developer tools can be "light" or "dark" themed, based on a user preference in the Options panel of the Toolbox. To make your add-on look good regardless of the theme, you should use the `.theme-dark` and `.theme-light` selectors, as exemplified in [skin/style.css](https://github.com/victorporof/Restartless-Template/blob/master/skin/style.css).
