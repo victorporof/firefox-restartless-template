@@ -84,7 +84,7 @@ Starting with Firefox 29, the developer tools can be "light" or "dark" themed, b
 
 Take a look at [this wiki](https://developer.mozilla.org/en-US/docs/Tools/DevToolsColors) for the recommended pallete used by default throughout the Firefox developer tools. Try using those colors for a consistent look and feel.
 
-## Making the add-on work for remote targets
+## Remoting
 
 The Firefox Developer Tools have support for remote debugging. The protocol is described in depth [here](https://wiki.mozilla.org/Remote_Debugging_Protocol). If you want to make your add-on work with remote debugging, you'll have to support remote targets and [allow the add-on to use them](https://github.com/victorporof/Restartless-Template/blob/master/bootstrap.js#L59).
 
@@ -100,7 +100,7 @@ To wipe the build directory, use `make clean`.
 
 If you use git tags to nicely version your project, you can use `make head` to build a "release" version of your add-on based on the latest commit. This will not take uncommitted changes into consideration.
 
-## Publish your add-on
+## Publishing
 
 Go to https://addons.mozilla.org/developers/ and publish your new awesome add-on.
 
