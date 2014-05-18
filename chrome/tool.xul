@@ -22,6 +22,7 @@
 
   <body>
     <p>&MyAddonUI.label;</p>
+    <p id="hello"></p>
   </body>
 
 </html>

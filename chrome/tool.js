@@ -5,12 +5,16 @@
 
 const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 
+Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
   "resource:///modules/devtools/shared/event-emitter.js");
 XPCOMUtils.defineLazyModuleGetter(this, "promise",
   "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
+
+XPCOMUtils.defineLazyGetter(this, "StringBundle", () =>
+  Services.strings.createBundle(aStringBundleName));
 
 /**
  * This file has access to the `window` and `document` objects of the add-on's
@@ -28,6 +32,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "promise",
  *         A promise that should be resolved when the tool completes opening.
  */
 function startup(toolbox, target) {
+  $("#hello").textContent = StringBundle.GetStringFromName("greeting");
   return promise.resolve();
 }
 
