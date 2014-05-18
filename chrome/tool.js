@@ -13,8 +13,8 @@ XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
 XPCOMUtils.defineLazyModuleGetter(this, "promise",
   "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
 
-XPCOMUtils.defineLazyGetter(this, "StringBundle", () =>
-  Services.strings.createBundle(aStringBundleName));
+XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
+  Services.strings.createBundle("chrome://my-addon/locale/strings.properties"));
 
 /**
  * This file has access to the `window` and `document` objects of the add-on's
@@ -32,7 +32,7 @@ XPCOMUtils.defineLazyGetter(this, "StringBundle", () =>
  *         A promise that should be resolved when the tool completes opening.
  */
 function startup(toolbox, target) {
-  $("#hello").textContent = StringBundle.GetStringFromName("greeting");
+  $("#hello").textContent = toolStrings.GetStringFromName("greeting");
   return promise.resolve();
 }
 
