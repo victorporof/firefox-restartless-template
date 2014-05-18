@@ -94,7 +94,7 @@ Simply `make` inside the project folder to build and archive the latest version 
 
 To wipe the build directory, use `make clean`.
 
-If you use git tags to nicely version your project, you can use `make xpi` to build a "release" version of your add-on based on the latest tag. This will not take uncommitted changes into consideration.
+If you use git tags to nicely version your project, you can use `make head` to build a "release" version of your add-on based on the latest commit. This will not take uncommitted changes into consideration.
 
 ## Publish your add-on
 
