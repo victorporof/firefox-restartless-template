@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files='find . -type f -not \( -path "*$0*" -o -path "*git*" -o -path "*skin*" -o -path "*.md*" -o -ipath "*make*" \)'
+files='find . -type f -not \( -path "*$0*" -o -path "*git*" -o -path "*skin*" -o -path "*.md*" \)'
 
 function replace {
   fieldName=$1
