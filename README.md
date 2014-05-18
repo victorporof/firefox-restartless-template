@@ -86,7 +86,7 @@ Take a look at [this wiki](https://developer.mozilla.org/en-US/docs/Tools/DevToo
 
 ## Making the add-on work for remote targets
 
-The Firefox Developer Tools have support for remote debugging. The protocol is described in depth [here](https://wiki.mozilla.org/Remote_Debugging_Protocol) and the remote procedures are described [here](https://developer.mozilla.org/en-US/Firefox_OS/Firefox_OS_usage_tips/Remote_debugging). If you want to make your add-on work with remote debugging, you'll have to support remote targets and [allow the add-on to use them](https://github.com/victorporof/Restartless-Template/blob/master/bootstrap.js#L59).
+The Firefox Developer Tools have support for remote debugging. The protocol is described in depth [here](https://wiki.mozilla.org/Remote_Debugging_Protocol). If you want to make your add-on work with remote debugging, you'll have to support remote targets and [allow the add-on to use them](https://github.com/victorporof/Restartless-Template/blob/master/bootstrap.js#L59).
 
 Certain tools in Firefox will always use remote targets, so, for example, your add-on won't show up in the [App Manager](https://developer.mozilla.org/en-US/Firefox_OS/Using_the_App_Manager) if remote targets are not supported.
 
