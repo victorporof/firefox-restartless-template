@@ -32,7 +32,9 @@ XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
  *         A promise that should be resolved when the tool completes opening.
  */
 function startup(toolbox, target) {
-  $("#hello").textContent = toolStrings.GetStringFromName("greeting");
+  // $("#hello").textContent = toolStrings.GetStringFromName("greeting");
+  $("#hello").textContent = toolStrings.formatStringFromName("customizedGreeting", ["MyAddon"], 1);
+
   return promise.resolve();
 }
 
