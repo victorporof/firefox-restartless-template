@@ -51,5 +51,5 @@ function shutdown() {
 /**
  * DOM query helpers.
  */
-function $(aSelector, aTarget = document) aTarget.querySelector(aSelector);
-function $$(aSelector, aTarget = document) aTarget.querySelectorAll(aSelector);
+function $(selector, target = document) target.querySelector(selector);
+function $$(selector, target = document) target.querySelectorAll(selector);
