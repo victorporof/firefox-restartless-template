@@ -67,7 +67,7 @@ Open Firefox Developer Tools using Ctrl/Cmd+Shift+I and you'll see your new addo
 
 ## Debugging
 
-Starting with Firefox 31 ([download Aurora](https://www.mozilla.org/en-US/firefox/channel/#aurora)), you can easily debug your add-on using the built-in developer tools. Simply go to the [about:addons](about:addons) page and click the "Debug" button next to your add-on. Keep in mind that scripts are lazily evaluated, so if no code was executed, no source files will be shown.
+Starting with Firefox 31 ([download Aurora](https://www.mozilla.org/en-US/firefox/channel/#aurora)), you can easily debug your add-on using the built-in developer tools. [Turn this on](https://developer.mozilla.org/en-US/Add-ons/Add-on_Debugger), then simply go to the [about:addons](about:addons) page and click the "Debug" button next to your add-on. Keep in mind that scripts are lazily evaluated, so if no code was executed, no source files will be shown.
 
 ## Theming
 
