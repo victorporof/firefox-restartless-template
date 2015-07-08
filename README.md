@@ -1,3 +1,6 @@
+# [DEPRECATED]
+Look at https://github.com/firebug/devtools-extension-examples instead, which uses the new extension format and the `jpm` tool.
+
 Restartless-Template
 ===
 
