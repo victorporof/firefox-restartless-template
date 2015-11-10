@@ -5,6 +5,14 @@
 /* Go to https://developer.mozilla.org/docs/Tools/DevToolsColors
  * for the default colors used in Firefox Developer Tools */
 
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
 .theme-dark body > p {
   color: #f5f7fa;
 }
