@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* Go to https://developer.mozilla.org/docs/Tools/DevToolsColors
- * for the default colors used in Firefox Developer Tools */
+ * for the default colors used in Firefox Developer Tools. */
 
 html, body {
   height: 100%;
@@ -20,12 +20,13 @@ body {
 p {
   display: flex;
   margin: 0 auto;
+  color: var(--theme-content-color1);
 }
 
-.theme-dark p {
-  color: #f5f7fa;
+.theme-dark p:hover {
+  color: var(--theme-highlight-green);
 }
 
-.theme-light p {
-  color: #ed2655;
+.theme-light p:hover {
+  color: var(--theme-highlight-blue);
 }
