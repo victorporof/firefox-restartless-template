@@ -19,7 +19,7 @@ body {
 
 p {
   display: flex;
-  margin: 8px auto;
+  margin: 0 auto;
 }
 
 .theme-dark p {
