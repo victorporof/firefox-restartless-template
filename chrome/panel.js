@@ -30,7 +30,9 @@ function MyAddonPanel(iframeWindow, toolbox) {
 };
 
 MyAddonPanel.prototype = {
-  get target() this._toolbox.target,
+  get target() {
+    return this._toolbox.target;
+  },
 
   /**
    * Open is effectively an asynchronous constructor.
