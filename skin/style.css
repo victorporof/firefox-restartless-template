@@ -11,10 +11,15 @@ html, body {
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 p {
-  margin: 8px;
+  display: flex;
+  margin: 8px auto;
 }
 
 .theme-dark p {
