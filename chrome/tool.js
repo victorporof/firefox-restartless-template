@@ -4,22 +4,27 @@
 "use strict";
 
 const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
+const { require, loader } = Cu.import("resource://devtools/shared/Loader.jsm", {});
+const { Task } = Cu.import("resource://gre/modules/Task.jsm", {});
 
-Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+loader.lazyRequireGetter(this, "Services");
+loader.lazyRequireGetter(this, "promise");
+loader.lazyRequireGetter(this, "EventEmitter", "devtools/shared/event-emitter");
 
-XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
-  "resource://gre/modules/devtools/event-emitter.js");
-XPCOMUtils.defineLazyModuleGetter(this, "promise",
-  "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
-
-XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
-  Services.strings.createBundle("chrome://my-addon/locale/strings.properties"));
+loader.lazyGetter(this, "toolStrings", () => {
+  return Services.strings.createBundle("chrome://my-addon/locale/strings.properties");
+});
 
 /**
  * This file has access to the `window` and `document` objects of the add-on's
  * iframe, and is included in tool.xhtml. This is the add-on's controller.
  */
+
+/**
+ * DOM query helpers.
+ */
+const $ = (selector, target = document) => target.querySelector(selector);
+const $$ = (selector, target = document) => target.querySelectorAll(selector);
 
 /**
  * Called when the user select the tool tab.
@@ -31,12 +36,10 @@ XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
  * @return object
  *         A promise that should be resolved when the tool completes opening.
  */
-function startup(toolbox, target) {
+this.startup = Task.async(function*(toolbox, target) {
   // $("#hello").textContent = toolStrings.GetStringFromName("greeting");
   $("#hello").textContent = toolStrings.formatStringFromName("customizedGreeting", ["MyAddon"], 1);
-
-  return promise.resolve();
-}
+});
 
 /**
  * Called when the user closes the toolbox or disables the add-on.
@@ -44,12 +47,5 @@ function startup(toolbox, target) {
  * @return object
  *         A promise that should be resolved when the tool completes closing.
  */
-function shutdown() {
-  return promise.resolve();
-}
-
-/**
- * DOM query helpers.
- */
-function $(selector, target = document) target.querySelector(selector);
-function $$(selector, target = document) target.querySelectorAll(selector);
+this.shutdown = Task.async(function*() {
+});
