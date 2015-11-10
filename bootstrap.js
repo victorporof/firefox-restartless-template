@@ -43,6 +43,7 @@ XPCOMUtils.defineLazyGetter(this, "toolDefinition", () => ({
 
   // The url of the icon, displayed in the Toolbox.
   icon: "chrome://my-addon/skin/icon.png",
+  invertIconForLightTheme: true,
 
   // A tool lives in its own iframe. The Toolbox will load this URL.
   url: "chrome://my-addon/content/tool.xhtml",
