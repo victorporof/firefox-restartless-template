@@ -3,10 +3,15 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 "use strict";
 
-const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
-const { require, loader } = Cu.import("resource://devtools/shared/Loader.jsm", {});
-const { Task } = Cu.import("resource://gre/modules/Task.jsm", {});
+const { require, loader } = Components.utils.import("resource://devtools/shared/Loader.jsm", {});
 
+/**
+ * Import files using `require` and `loader.lazyRequireGetter`. You should use
+ * the latter for modules that aren't immediately needed.
+ */
+
+const { Task } = require("resource://gre/modules/Task.jsm");
+loader.lazyRequireGetter(this, "Services");
 loader.lazyRequireGetter(this, "promise");
 loader.lazyRequireGetter(this, "EventEmitter", "devtools/shared/event-emitter");
 

@@ -3,22 +3,30 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 "use strict";
 
-const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
-const { require, loader } = Cu.import("resource://devtools/shared/Loader.jsm", {});
-const { Task } = Cu.import("resource://gre/modules/Task.jsm", {});
-
-loader.lazyRequireGetter(this, "Services");
-loader.lazyRequireGetter(this, "promise");
-loader.lazyRequireGetter(this, "EventEmitter", "devtools/shared/event-emitter");
-
-loader.lazyGetter(this, "toolStrings", () => {
-  return Services.strings.createBundle("chrome://my-addon/locale/strings.properties");
-});
-
 /**
  * This file has access to the `window` and `document` objects of the add-on's
  * iframe, and is included in tool.xhtml. This is the add-on's controller.
  */
+
+const { require, loader } = Components.utils.import("resource://devtools/shared/Loader.jsm", {});
+
+/**
+ * Import files using `require` and `loader.lazyRequireGetter`. You should use
+ * the latter for modules that aren't immediately needed.
+ */
+
+const { Task } = require("resource://gre/modules/Task.jsm");
+loader.lazyRequireGetter(this, "Services");
+loader.lazyRequireGetter(this, "promise");
+loader.lazyRequireGetter(this, "EventEmitter", "devtools/shared/event-emitter");
+
+/**
+ * Define lazy getters for expensive IO using `loader.lazyGetter`.
+ */
+
+loader.lazyGetter(this, "toolStrings", () => {
+  return Services.strings.createBundle("chrome://my-addon/locale/strings.properties");
+});
 
 /**
  * DOM query helpers.
@@ -48,4 +56,5 @@ this.startup = Task.async(function*(toolbox, target) {
  *         A promise that should be resolved when the tool completes closing.
  */
 this.shutdown = Task.async(function*() {
+  // Nothing to do here yet.
 });
