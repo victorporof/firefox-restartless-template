@@ -7,8 +7,6 @@ const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 const { require, loader } = Cu.import("resource://devtools/shared/Loader.jsm", {});
 const { Task } = Cu.import("resource://gre/modules/Task.jsm", {});
 
-this.EXPORTED_SYMBOLS = ["MyAddonPanel"];
-
 loader.lazyRequireGetter(this, "promise");
 loader.lazyRequireGetter(this, "EventEmitter", "devtools/shared/event-emitter");
 
@@ -57,3 +55,5 @@ MyAddonPanel.prototype = {
     this.emit("destroyed");
   })
 };
+
+this.EXPORTED_SYMBOLS = ["MyAddonPanel"];
