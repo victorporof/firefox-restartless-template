@@ -13,10 +13,14 @@ body {
   margin: 0;
 }
 
-.theme-dark body > p {
+p {
+  margin: 8px;
+}
+
+.theme-dark p {
   color: #f5f7fa;
 }
 
-.theme-light body > p {
+.theme-light p {
   color: #ed2655;
 }
