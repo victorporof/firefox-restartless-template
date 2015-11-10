@@ -90,7 +90,7 @@ It's always nice having your add-on available in multiple languages.
 
 Add your localized strings to [strings.dtd](https://github.com/victorporof/Restartless-Template/blob/master/locale/en-US/strings.dtd) and [strings.properties](https://github.com/victorporof/Restartless-Template/blob/master/locale/en-US/strings.properties).
 
-Generally, `strings.dtd` is used for static messages, added in the markup as soon as it's loaded, e.g in [tool.xul](https://github.com/victorporof/Restartless-Template/blob/master/chrome/tool.xul#L24). On the other hand, `strings.properties` is used for dynamic messages, which need to be set (or formatted) programatically, e.g. in [tool.js](https://github.com/victorporof/Restartless-Template/blob/master/chrome/tool.js#L35).
+Generally, `strings.dtd` is used for static messages, added in the markup as soon as it's loaded, e.g in [tool.xhtml](https://github.com/victorporof/Restartless-Template/blob/master/chrome/tool.xhtml#L24). On the other hand, `strings.properties` is used for dynamic messages, which need to be set (or formatted) programatically, e.g. in [tool.js](https://github.com/victorporof/Restartless-Template/blob/master/chrome/tool.js#L35).
 
 Your default language bundle is specified by the [chrome.manifest](https://github.com/victorporof/Restartless-Template/blob/master/chrome.manifest).
 

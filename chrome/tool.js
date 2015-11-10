@@ -18,7 +18,7 @@ XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
 
 /**
  * This file has access to the `window` and `document` objects of the add-on's
- * iframe, and is included in tool.xul. This is the add-on's controller.
+ * iframe, and is included in tool.xhtml. This is the add-on's controller.
  */
 
 /**

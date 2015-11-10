@@ -45,7 +45,7 @@ XPCOMUtils.defineLazyGetter(this, "toolDefinition", () => ({
   icon: "chrome://my-addon/skin/icon.png",
 
   // A tool lives in its own iframe. The Toolbox will load this URL.
-  url: "chrome://my-addon/content/tool.xul",
+  url: "chrome://my-addon/content/tool.xhtml",
 
   // The tool's name. Showed in Firefox' tool menu and in the Toolbox' tab.
   label: toolStrings.GetStringFromName("MyAddon.label"),
