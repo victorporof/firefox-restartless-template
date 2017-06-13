@@ -3,8 +3,6 @@ Restartless-Template
 
 Simple template project for developing restartless Firefox Developer Tools addons.
 
-![Screenshot](https://dl.dropboxusercontent.com/u/2388316/screenshots/firefox-restartless-addon.png)
-
 ## Workflow
 
 This template allows you to create restartless Firefox add-ons. This means that your workflow can also benefit from it, and reduce the (likely annoying) code->build->install lag. See documentation about [setting up a bootstrapped addon extension environment](https://developer.mozilla.org/docs/Setting_up_extension_development_environment#Firefox_extension_proxy_file) for some in-depth explanation on how to do this.
